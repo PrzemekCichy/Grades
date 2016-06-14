@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grades", "Grades\Grades.csproj", "{E94E2079-0358-49C9-A8EF-4175CC4DADAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradesTest", "GradesTest\GradesTest.csproj", "{E1517D1D-41D3-4179-9F94-4415337BBC76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E94E2079-0358-49C9-A8EF-4175CC4DADAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94E2079-0358-49C9-A8EF-4175CC4DADAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94E2079-0358-49C9-A8EF-4175CC4DADAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94E2079-0358-49C9-A8EF-4175CC4DADAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1517D1D-41D3-4179-9F94-4415337BBC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1517D1D-41D3-4179-9F94-4415337BBC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1517D1D-41D3-4179-9F94-4415337BBC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1517D1D-41D3-4179-9F94-4415337BBC76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
