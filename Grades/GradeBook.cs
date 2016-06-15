@@ -11,6 +11,7 @@ namespace Grades
         private List<float> grades;
         public GradeBook() {
             grades = new List<float>();
+            name = "Hi!";
         }
 
         public GradeStatistics ComputeStatistics() {
@@ -33,6 +34,25 @@ namespace Grades
             grades.Add(grade);
         }
 
-        public string Name;
+        public string Name {
+            get {
+                return name;
+            }
+            set {
+                if (String.IsNullOrEmpty(value)) {
+                    return;
+                }
+                if(name != value)
+                {
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+                    args.ExistingName = name;
+                    args.NewName = value;
+                    NameChanged(this, args);
+                }
+                name = value;
+            }
+        }
+        public event NameChangedDelegate NameChanged;
+        private string name;
     }
 }
