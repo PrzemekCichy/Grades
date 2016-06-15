@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,40 +11,74 @@ namespace Grades
     {
         static void Main(string[] args)
         {
-
+            int[] ages = { 2, 21, 40, 72, 100 };
+            foreach (int value in ages)
+            {
+                Console.WriteLine(value);
+            }
 
             GradeBook book = new GradeBook();
 
-            book.NameChanged += OnNameChange;
-            book.NameChanged += new NameChangedDelegate(OnNameChange);
-            book.AddGrade(91);
-            book.AddGrade(89.5f);
-            book.AddGrade(75);
+            AddGrades(book);
+            GetBookName(book);
 
+            SaveGrades(book);
+
+            WriteResults(book);
+        }
+
+        private static void WriteResults(GradeBook book)
+        {
             GradeStatistics stats = book.ComputeStatistics();
             WriteResults("Average", stats.AverageGrade);
             WriteResults("Highest", stats.HighestGrade);
             WriteResults("Lowest", stats.LowestGrade);
-            book.Name = "Book!";
-            Console.WriteLine(book.Name);
-            //Console.WriteLine(stats.AverageGrade);
-            //Console.WriteLine(stats.HighestGrade);
+            WriteResults(stats.Description, stats.LetterGrade);
         }
 
-        static void OnNameChange(object sender, NameChangedEventArgs args)
+        private static void SaveGrades(GradeBook book)
         {
-            Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
+            using (StreamWriter outputFile = File.CreateText("grades.txt"))
+            {
+                book.WriteGrades(outputFile);
+            }
+            //StreamWriter outputFile =  File.CreateText("grades.txt");
+            // book.WriteGrades(outputFile);
+            // outputFile.Close();
         }
 
+        private static void AddGrades(GradeBook book)
+        {
+            book.AddGrade(91);
+            book.AddGrade(89.5f);
+            book.AddGrade(75);
+        }
 
-        private static void WriteResults(string description, float result)
+        private static void GetBookName(GradeBook book)
+        {
+            try
+            {
+                Console.WriteLine("Enter a name");
+                book.Name = Console.ReadLine();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("Someting went wrong");
+            }
+        }
+
+        private static void WriteResults(string description, string result)
         {
             Console.WriteLine("{0}: {1}", description, result);
         }
 
-        private static void WriteResults(string description, int result)
+        private static void WriteResults(string description, float result)
         {
-            Console.WriteLine("${description}: {result}");
+            Console.WriteLine("{0}: {1:F2}", description, result);
         }
     }
 }
